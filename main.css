@@ -1,0 +1,22 @@
+body {
+	font-family: Helvetica, Arial, sans-serif;
+	font-size: 14px;
+	margin: 0;
+	overflow: hidden;
+}
+
+#button {
+	position: fixed;
+	bottom: 16px;
+	right: 16px;
+
+	padding: 12px;
+	border-radius: 50%;
+	margin-bottom: 0px;
+
+	background-color: #FFF;
+	opacity: .9;
+	z-index: 999;
+
+	box-shadow: 0 0 4px rgba(0,0,0,.15);
+}
