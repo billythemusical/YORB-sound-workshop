@@ -60,7 +60,8 @@ function init() {
   const listener = new THREE.AudioListener();
   camera.add( listener );
 
-
+  let pos = [[-1, -1], [1, -1], [-1, 1], [1, 1]]
+  let spacing = 3;
   for (let i = 1; i < 5; i++) {
     let id = 'track' + i.toString()
     console.log(id)
@@ -72,16 +73,21 @@ function init() {
     positionalAudio.setRefDistance( 1 );
 
     // add an object for a sound to play from
+    let hue = (255/4) * i
+    let col = new THREE.Color("hsl(" + hue + ", 100%, 50%)")
     let sphereGeometry = new THREE.SphereGeometry( 0.25 , 0, 0 );
-    let sphereMaterial = new THREE.MeshPhongMaterial( { color: 0x8f34eb } );
+    let sphereMaterial = new THREE.MeshPhongMaterial( { color: col } );
     let sphere = new THREE.Mesh( sphereGeometry, sphereMaterial );
-    let spacing = 5
-    sphere.position.set( 0 , 0.25, - 4 + i * 2);
+
+    let x = pos[i - 1][0] * spacing
+    let z = pos[i - 1][1] * spacing
+    sphere.position.set( x , 0.25, z );
     sphere.rotation.y = - Math.PI;
     sphere.castShadow = true;
 
     sphere.add( positionalAudio )
-    scene.add( sphere );
+    scene.add( sphere )
+
   }
 
 
