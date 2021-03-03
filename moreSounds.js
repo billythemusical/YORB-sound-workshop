@@ -17,7 +17,7 @@ function init() {
   //
 
   camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 0.1, 100 );
-  // camera.position.set( 8.48, 5.27, 1.17 );
+  camera.position.set( 8.48, 5.27, 1.17 );
 
   scene = new THREE.Scene();
   scene.background = new THREE.Color( 0xa0a0a0 );
