@@ -66,7 +66,7 @@ function init() {
     let id = 'track' + i.toString()
     console.log(id)
     let audioElement = document.getElementById(id);
-    audioElement.play();
+    // audioElement.play(); 
 
     let positionalAudio = new THREE.PositionalAudio( listener );
     positionalAudio.setMediaElementSource( audioElement );
@@ -87,6 +87,8 @@ function init() {
 
     sphere.add( positionalAudio )
     scene.add( sphere )
+
+    audioElement.play(); // to get rid of the jolty intro
 
   }
 
