@@ -14,7 +14,7 @@ I am also a part of a working group of faculty, residents, students, and alumni 
 
 Music is usually played through a set of two speakers in a what is called a stereo configuration, with each speaker referred to as the Left and Right, corresponding to each ear of the listener.  Different sound elements can be "panned" between the two speakers which gives the illusion of movement in relation to the listener.  A sound that is played out of the left speaker only will give the listener the perception that the sound is coming from that direction and vice versa with the right.  So here we have a 2-dimensional (2D) sound field.  
 
-  ![Stereo Sound is comprised of two speakers.](/assets/images/stero-sound-left-right.png)
+  ![Stereo Sound is comprised of two speakers.](/assets/images/stereo-sound-left-right.png)
 
 In reality however, humans have evolved to perceive sound in 3 dimensions (3D) only given 2 ears.  We can hear if a sound is in front or behind us, as well as above or below.  All of the reasons behind exactly how this works are not fully understood, although some are quite simple. For example, a sound source that originates from behind the listener will have slightly less high frequencies.  This is because our outer ear attenuates higher frequencies before they enter our ear canal.
 
