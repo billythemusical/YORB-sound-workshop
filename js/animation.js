@@ -65,7 +65,7 @@ function init() {
   camera.add( listener );
 
   let pos = [[-1, -1], [1, -1], [-1, 1], [1, 1]]
-  let spacing = 3;
+  let spacing = 2;
   for (let i = 1; i < 5; i++) {
     let id = 'track' + i.toString()
     console.log(id)
@@ -117,7 +117,7 @@ function init() {
   controls.target.set( 0, 0.1, 0 );
   controls.update();
   controls.minDistance = 0.5;
-  controls.maxDistance = 10;
+  controls.maxDistance = 12;
   controls.maxPolarAngle = 0.5 * Math.PI;
 
   //
@@ -137,16 +137,30 @@ function onWindowResize() {
 
 }
 
+let time = 0;
+
 function animate() {
+  time += 0.05
 
   let index = 0;
-  
+  let diameter = 0.06
   for (let sound of sounds) {
-    let data = sound.analyser.getAverageFrequency()
-    let scale = data.map(0.0, 15.0, 0.0, 1.0)
 
-    let newColor = new THREE.Color().setHSL((index/sounds.length), 0.75, scale)
-    sound.mesh.material.color= newColor
+    let x, y, z = 0
+    let offset = index / 90
+
+    if (index % 2 == 0) {
+      x = Math.cos(time - offset) * diameter
+      z =  Math.sin(time + offset) * diameter
+    } else {
+      x = Math.sin(time + offset) * diameter
+      z =  Math.cos(time - offset) * diameter
+    }
+
+    let rotate = new THREE.Vector3(x, y, z)
+    sound.mesh.position.add(rotate)
+
+    index++
   }
 
   requestAnimationFrame( animate );
