@@ -22,7 +22,7 @@ Positional audio, aka Spatial or Spatialized audio, processes a sound placed beh
 
 # Getting Started
 
-This tutorial will give examples of how Three.js uses the [Positional Audio features][https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API/Web_audio_spatialization_basics] like (PannerNode)[https://developer.mozilla.org/en-US/docs/Web/API/PannerNode] that are built into the modern browser.
+This tutorial will give examples of how Three.js uses the [Positional Audio features](https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API/Web_audio_spatialization_basics) like (PannerNode)[https://developer.mozilla.org/en-US/docs/Web/API/PannerNode] that are built into the modern browser.
 
 We will begin by adding our sound source to our `add-sound.html` file like so:
 
