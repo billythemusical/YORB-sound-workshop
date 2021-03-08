@@ -140,13 +140,15 @@ function onWindowResize() {
 function animate() {
 
   let index = 0;
-  
+
   for (let sound of sounds) {
     let data = sound.analyser.getAverageFrequency()
-    let scale = data.map(0.0, 15.0, 0.0, 1.0)
+    let scale = data.map(0.0, 7.0, 0.0, 1.0)
 
-    let newColor = new THREE.Color().setHSL((index/sounds.length), 0.75, scale)
-    sound.mesh.material.color= newColor
+    let newColor = new THREE.Color().setHSL((index/sounds.length), scale, 0.5)
+    // let newColor = new THREE.Color().setHSL(hue, scale, 0.5)
+    sound.mesh.material.color = newColor
+    index++
   }
 
   requestAnimationFrame( animate );
