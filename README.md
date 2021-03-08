@@ -29,3 +29,9 @@ We will begin by adding our sound source to our `add-sound.html` file like so:
     <audio loop id="track1" src="sounds/track_1.mp3" type="audio/mpeg" preload="auto" style="display: none"></audio>
 
 We will access this element in our Javascript code and pass it into our Three.js `PositionalAudio` object later.
+
+This document is a work-in-progress, but there are four examples you can choose from:
+  - [Add a sound](./public/01-add-sound.html)
+  - [More Sounds](./public/02-more-sounds.html)
+  - [Using Audio Analysis](./public/03-audio-analysis.html)
+  - [Using Animation](./public/04-animation.html)
