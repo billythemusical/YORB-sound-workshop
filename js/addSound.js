@@ -13,7 +13,6 @@ startButton.addEventListener( 'click', init );  // "when the button is clicked, 
 
 function init() {
 
-
   const overlay = document.getElementById( 'overlay' ); // get the overlay div
   overlay.remove(); // remove the overlay div
 
@@ -22,22 +21,22 @@ function init() {
   // a note on colors: Three.js can take a number of different color types, but HEX is preferred it seems
   // https://threejs.org/docs/#api/en/math/Color
 
-  // here we make a new camera to view the scene
+  // boiler plate - here we make a new camera to view the scene
   //  you can read more about Perspective Camera here - https://threejs.org/docs/#api/en/cameras/PerspectiveCamera
   camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 0.1, 100 );
   camera.position.set( 3, 2, 3 );  // our starting view position
 
-  // a scene to hold all the objects we create
+  // boiler plate - a scene to hold all the objects we create
   scene = new THREE.Scene();
   scene.background = new THREE.Color( 0xa0a0a0 ); // background color
   scene.fog = new THREE.Fog( 0xa0a0a0, 2, 20 ); // fog is interesting, try commenting it out
 
-  // now we add lights to the scene
+  // boiler plate - now we add lights to the scene
   const hemiLight = new THREE.HemisphereLight( 0xffffff, 0x444444 );
   hemiLight.position.set( 0, 20, 0 ); // this will be overhead
   scene.add( hemiLight );
 
-  // this light will determined the shadow that we see on our objects
+  // boiler plate - this light will determined the shadow that we see on our objects
   const dirLight = new THREE.DirectionalLight( 0xffffff );
   dirLight.position.set( 5, 5, 0 );
   dirLight.castShadow = true;
@@ -61,33 +60,7 @@ function init() {
   const grid = new THREE.GridHelper( 50, 50, 0x888888, 0x888888 );
   scene.add( grid );
 
-  // audio stuff!!
-
-  // a listenter is like the camera for audio,
-  // it is where we will be listening from relative to
-  // the 3D position of the other objects in the scene
-  const listener = new THREE.AudioListener();
-  // we add the listener to our camera
-  // which links the listener position with the camera position
-  camera.add( listener );
-
-  // grabbing our audio element
-  const audioElement = document.getElementById( 'track1' );
-  audioElement.play();
-
-  // creating our audio object and passing in the listener as our destination
-  const positionalAudio = new THREE.PositionalAudio( listener );
-  // passing in our audio element as the source
-  positionalAudio.setMediaElementSource( audioElement );
-  positionalAudio.setRefDistance( 1 );
-  positionalAudio.setDirectionalCone( 180, 230, 0.1 );
-
-  const helper = new PositionalAudioHelper( positionalAudio, 2 );
-  positionalAudio.add( helper );
-
-  scene.add( positionalAudio ); // add the audio to the mesh
-
-  // add an object for a sound to play from
+  // make an object which we will play the sound from
   let sphereGeometry = new THREE.SphereGeometry( 0.25 , 0, 0 );
   let sphereMaterial = new THREE.MeshPhongMaterial( { color: 0x8f34eb } );
   let sphere = new THREE.Mesh( sphereGeometry, sphereMaterial );
@@ -97,17 +70,52 @@ function init() {
 
   scene.add( sphere ); // add the mesh to the scene
 
-  // sound is damped behind this wall
-  const wallGeometry = new THREE.BoxGeometry( 2, 1, 0.1 );
-  const wallMaterial = new THREE.MeshBasicMaterial( { color: 0x35d4a4, transparent: true, opacity: 0.5 } );
-
-  const wall = new THREE.Mesh( wallGeometry, wallMaterial );
-  wall.position.set( 0, 0.5, - 0.5 );
-  scene.add( wall );
-
-
+  // // sound is damped behind this wall
+  // const wallGeometry = new THREE.BoxGeometry( 2, 1, 0.1 );
+  // const wallMaterial = new THREE.MeshBasicMaterial( { color: 0x35d4a4, transparent: true, opacity: 0.5 } );
   //
+  // const wall = new THREE.Mesh( wallGeometry, wallMaterial );
+  // wall.position.set( 0, 0.5, - 0.5 );
+  // scene.add( wall );
 
+          /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+          >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+          >>>>>>>!! AUDIO STUFF !!>>>>>>>>
+          >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+          >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
+
+  // AudioListenter is like the camera for audio,
+  // it is where we will be listening from relative to
+  // the 3D position of the other objects in the scene
+  const listener = new THREE.AudioListener();
+  // we add the listener to our camera
+  // which links the listener position with the camera position
+  camera.add( listener );
+
+  // grabbing our audio element
+  const audioElement = document.getElementById( 'track1' );
+
+  // creating our audio object and passing in the listener as our destination
+  const positionalAudio = new THREE.PositionalAudio( listener );
+  // passing in our audio element as the source
+  positionalAudio.setMediaElementSource( audioElement );
+  audioElement.play();
+  // RefDistance determines how far away from the source we must be before the sound
+  // starts to decrease in volume
+  // there is also .setRollOffFactor which we can play with
+  positionalAudio.setRefDistance( 1 );
+  // determines how the audio will respond in relation to the angle of the listener
+  positionalAudio.setDirectionalCone( 180, 230, 0.1 );
+
+  // to visualize the directional cone above
+  const helper = new PositionalAudioHelper( positionalAudio, 2 );
+  // we add it to our positionalAudio object to link their positions
+  positionalAudio.add( helper );
+
+  // we add the audio to the sphere to link their positions
+  sphere.add( positionalAudio )
+
+  // boiler plate - setting up rendering from 3D to 2D
   renderer = new THREE.WebGLRenderer( { antialias: true } );
   renderer.setSize( window.innerWidth, window.innerHeight );
   renderer.setPixelRatio( window.devicePixelRatio );
@@ -115,8 +123,7 @@ function init() {
   renderer.shadowMap.enabled = true;
   container.appendChild( renderer.domElement );
 
-  //
-
+  // boiler plate - setting up the basic controls for navigation
   const controls = new OrbitControls( camera, renderer.domElement );
   controls.target.set( 0, 0.1, 0 );
   controls.update();
