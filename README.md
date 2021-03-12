@@ -8,6 +8,9 @@ If you aren't familiar with the basics of building a scene in Three.js, there ar
   - [Stemkoski's Three.js Examples](https://stemkoski.github.io/Three.js/)
   - [Guillermo Montecinos' Three.js Tutorial](https://github.com/guillemontecinos/itp-residency-2020-2021/blob/master/three-js/tutorials/01-intro-to-threejs/intro-to-threejs.md)
 
+[Here](https://soundmove.space/) is a great example from an ITP alum [Dan Oved](https://www.danioved.com/) of streaming live video and audio with interactive effects in Three.js.
+
+
 I am also a part of a working group of faculty, residents, students, and alumni who develop and maintain [Yorb](https://yorb.itp.io), an interactive 3D social environment from NYU's ITP program, built using Three.js, among other open source software tools.  
 
 # 2D Stereo vs 3D Positional Audio
@@ -22,13 +25,21 @@ Positional audio, aka Spatial or Spatialized audio, processes a sound placed beh
 
 # Getting Started
 
-This tutorial will give examples of how Three.js uses the [Positional Audio features](https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API/Web_audio_spatialization_basics) like [`PannerNode`](https://developer.mozilla.org/en-US/docs/Web/API/PannerNode) that are built into the modern browser.
+## Running a Local Server
 
-We will begin by adding our sound source to our `add-sound.html` file like so:
+Since we're loading local media files and including remote javascript libraries, we must use a slightly more complex server than say, Python's `SimpleHttpServer`.  We recommend using Node.js `http-server`.  You can install Node.js if you need it at the link [here](https://nodejs.org/en/download/).  
+
+Once you have Node.js installed, navigate to this directory using a command line interface (CLI) like the Terminal app - `cd /your/local/path/to/YORB-sound-workshop`.  Then run `npm install` which will install the required packages from our `package.json` list, including `http-server`.
+
+## Examples
+
+This tutorial will give examples of how Three.js leverages the [Audio Spatialization features](https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API/Web_audio_spatialization_basics) like [`3D PannerNode`](https://developer.mozilla.org/en-US/docs/Web/API/PannerNode) that are built into the modern browser.
+
+We add an audio source in the `add-sound.html` file like so:
 
     <audio loop id="track1" src="sounds/track_1.mp3" type="audio/mpeg" preload="auto" style="display: none"></audio>
 
-We will access this element in our Javascript code and pass it into our Three.js `PositionalAudio` object later.
+In our Javascript code, we access this element and pass it into our Three.js `PositionalAudio` object later.
 
 This document is a work-in-progress, but there are four examples you can choose from:
   - [Add a sound](./public/01-add-sound.html)

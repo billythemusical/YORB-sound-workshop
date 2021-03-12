@@ -1,9 +1,7 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 	<head>
-		<title>three.js webaudio - orientation</title>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		<title>yorb sound workshopt - three.js webaudio</title>
 	</head>
 <body>
 
@@ -12,11 +10,15 @@
 	<audio loop id="track3" src="assets/sounds/track_3.mp3" type="audio/mpeg" preload="auto" style="display: none"></audio>
 	<audio loop id="track4" src="assets/sounds/track_4.mp3" type="audio/mpeg" preload="auto" style="display: none"></audio>
 
+	<!-- we need a button to start the audio context
+	we will set this div to disappear when we click the button -->
 	<div id="overlay" style="margin: 0 auto">
 		<button id="startButton">Play</button>
 	</div>
-	<div id="container"></div>
 
+	<!-- the container for our three.js scene -->
+	<div id="container"></div>
+	<!-- our javascript file -->
 	<script src="js/moreSounds.js" type="module" ></script>
 
 </body>
