@@ -70,13 +70,13 @@ function init() {
 
   scene.add( sphere ); // add the mesh to the scene
 
-  // // sound is damped behind this wall
-  // const wallGeometry = new THREE.BoxGeometry( 2, 1, 0.1 );
-  // const wallMaterial = new THREE.MeshBasicMaterial( { color: 0x35d4a4, transparent: true, opacity: 0.5 } );
-  //
-  // const wall = new THREE.Mesh( wallGeometry, wallMaterial );
-  // wall.position.set( 0, 0.5, - 0.5 );
-  // scene.add( wall );
+  // sound is damped behind this wall
+  const wallGeometry = new THREE.BoxGeometry( 2, 1, 0.1 );
+  const wallMaterial = new THREE.MeshBasicMaterial( { color: 0x35d4a4, transparent: true, opacity: 0.5 } );
+
+  const wall = new THREE.Mesh( wallGeometry, wallMaterial );
+  wall.position.set( 0, 0.5, - 0.5 );
+  scene.add( wall );
 
           /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
           >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
@@ -139,6 +139,7 @@ function init() {
 
 }
 
+// a helper function for resizing the window
 function onWindowResize() {
 
   camera.aspect = window.innerWidth / window.innerHeight;
@@ -148,6 +149,10 @@ function onWindowResize() {
 
 }
 
+// equivalent to the draw() function in p5
+// this function starts a loop by calling requestAnimationFrame
+// which then calls animate each time an animation frame is ready,
+// which calls requestAnimationFrame, and so on...
 function animate() {
 
   requestAnimationFrame( animate );
