@@ -65,7 +65,7 @@ function init() {
   let sphereMaterial = new THREE.MeshPhongMaterial( { color: 0x8f34eb } );
   let sphere = new THREE.Mesh( sphereGeometry, sphereMaterial );
   sphere.position.set( 0, 0.25, 0 );
-  sphere.rotation.y = - Math.PI;
+  // sphere.rotation.y = - Math.PI;
   sphere.castShadow = true;
 
   scene.add( sphere ); // add the mesh to the scene
